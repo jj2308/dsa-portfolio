@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <title>Key Concepts Learned</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Smooth Expand/Collapse Animation */
+        .expand-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+
+        .expand-content.open {
+            max-height: 500px; /* Adjust as needed for content size */
+        }
+
+        /* Hover Effect on Headers */
+        h3:hover {
+            color: #6a1b9a;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-[#f3e8ff] font-sans text-gray-800">
+
+    <section class="max-w-2xl mx-auto my-20 px-6">
+        <h2 class="text-4xl font-bold text-purple-700 text-center mb-10">Key Concepts Learned</h2>
+        <p class="text-lg text-gray-600 mb-8 text-center">
+            Explore the key data structures and algorithms that form the foundation of my learning journey.
+            Click on each concept to learn more!
+        </p>
+
+        <div class="space-y-8">
+            <!-- Arrays and Strings -->
+            <div>
+                <h3 class="text-2xl font-semibold" onclick="toggleContent('content-arrays')">Arrays and Strings</h3>
+                <div id="content-arrays" class="expand-content mt-4 bg-purple-100 p-4 rounded-lg shadow-md">
+                    <p>Mastered essential operations such as searching, sorting, and string manipulation. 
+                    Key challenges included implementing solutions for palindrome checking, anagram detection, and in-place reversal of arrays.</p>
+                </div>
+            </div>
+
+            <!-- Structures and Linked Lists -->
+            <div>
+                <h3 class="text-2xl font-semibold" onclick="toggleContent('content-structures')">Structures and Linked Lists</h3>
+                <div id="content-structures" class="expand-content mt-4 bg-purple-100 p-4 rounded-lg shadow-md">
+                    <p>Explored efficient data storage with structures and linked lists. 
+                    Built applications like a student record management system and practiced dynamic memory allocation techniques.</p>
+                </div>
+            </div>
+
+            <!-- Stack and Queue -->
+            <div>
+                <h3 class="text-2xl font-semibold" onclick="toggleContent('content-stack')">Stack and Queue</h3>
+                <div id="content-stack" class="expand-content mt-4 bg-purple-100 p-4 rounded-lg shadow-md">
+                    <p>Implemented stacks and queues for various use cases, including web browser navigation and expression evaluation using postfix notation.</p>
+                </div>
+            </div>
+
+            <!-- Tree and Graph -->
+            <div>
+                <h3 class="text-2xl font-semibold" onclick="toggleContent('content-tree')">Tree and Graph</h3>
+                <div id="content-tree" class="expand-content mt-4 bg-purple-100 p-4 rounded-lg shadow-md">
+                    <p>Dived into tree and graph algorithms, including binary search trees (BST), depth-first search (DFS), and breadth-first search (BFS). 
+                    Worked on real-world graph-based applications like social network analysis and pathfinding algorithms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white text-center py-4">
+        <p>© 2024 My DSA Portfolio</p>
+    </footer>
+
+    <script>
+        function toggleContent(id) {
+            const content = document.getElementById(id);
+            content.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>

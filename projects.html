@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <title>Projects</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+
+    <section class="max-w-4xl mx-auto my-20 px-6">
+        <h2 class="text-4xl font-bold text-purple-700 text-center mb-10">Projects</h2>
+        <p class="text-lg text-gray-600 mb-8 text-center">
+            Here are some of the exciting projects I’ve worked on, demonstrating the application of DSA concepts in real-world scenarios.
+        </p>
+
+        <div class="space-y-8">
+            <!-- Structures and Linked Lists -->
+            <div class="p-6 bg-purple-100 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold">Structures and Linked Lists: Student Record Management</h3>
+                <p class="mt-2 text-gray-600">Manage student records using linked lists of structures.</p>
+                <button onclick="toggleCode('project1-code')" 
+                    class="mt-4 bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-800">
+                    Show Code
+                </button>
+                <pre id="project1-code" class="hidden mt-4 bg-gray-900 text-white p-4 rounded">// #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Student {
+    int id;
+    char name[100];
+    float grade;
+    struct Student *next;
+};
+
+struct Student *createStudent(int id, char *name, float grade) {
+    struct Student *newStudent = (struct Student *)malloc(sizeof(struct Student));
+    newStudent->id = id;
+    strcpy(newStudent->name, name);
+    newStudent->grade = grade;
+    newStudent->next = NULL;
+    return newStudent;
+}
+
+void addStudent(struct Student **head, int id, char *name, float grade) {
+    struct Student *newStudent = createStudent(id, name, grade);
+    newStudent->next = *head;
+    *head = newStudent;
+}
+
+void deleteStudent(struct Student **head, int id) {
+    struct Student *temp = *head, *prev = NULL;
+    if (temp != NULL && temp->id == id) {
+        *head = temp->next;
+        free(temp);
+        return;
+    }
+    while (temp != NULL && temp->id != id) {
+        prev = temp;
+        temp = temp->next;
+    }
+    if (temp == NULL) return;
+    prev->next = temp->next;
+    free(temp);
+}
+
+void displayStudents(struct Student *head) {
+    struct Student *current = head;
+    while (current != NULL) {
+        printf("ID: %d, Name: %s, Grade: %.2f\n", current->id, current->name, current->grade);
+        current = current->next;
+    }
+}
+
+int main() {
+    struct Student *head = NULL;
+    addStudent(&head, 1, "Alice", 89.5);
+    addStudent(&head, 2, "Bob", 76.4);
+    addStudent(&head, 3, "Charlie", 92.1);
+
+    printf("Student Records:\n");
+    displayStudents(head);
+
+    deleteStudent(&head, 2);
+    printf("\nAfter deleting Bob:\n");
+    displayStudents(head);
+
+    return 0;
+}
+</pre>
+            </div>
+
+            <!-- Stack and Queue -->
+            <div class="p-6 bg-purple-100 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold">Stack and Queue: Web Browser Navigation</h3>
+                <p class="mt-2 text-gray-600">Simulate back and forward browser navigation using stacks.</p>
+                <button onclick="toggleCode('project2-code')" 
+                    class="mt-4 bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-800">
+                    Show Code
+                </button>
+                <pre id="project2-code" class="hidden mt-4 bg-gray-900 text-white p-4 rounded">// #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX 100
+
+typedef struct {
+    char *urls[MAX];
+    int top;
+} Stack;
+
+void init(Stack *s) {
+    s->top = -1;
+}
+
+void push(Stack *s, char *url) {
+    if (s->top < MAX - 1) {
+        s->urls[++(s->top)] = strdup(url);
+    }
+}
+
+char *pop(Stack *s) {
+    return s->top >= 0 ? s->urls[(s->top)--] : NULL;
+}
+
+void visitURL(Stack *back, Stack *forward, char *url) {
+    push(back, url);
+    while (forward->top != -1) pop(forward);  // Clear forward stack
+    printf("Visiting: %s\n", url);
+}
+
+void back(Stack *back, Stack *forward) {
+    if (back->top > 0) {
+        push(forward, pop(back));
+        printf("Going back to: %s\n", back->urls[back->top]);
+    } else {
+        printf("No back history!\n");
+    }
+}
+
+void forward(Stack *back, Stack *forward) {
+    if (forward->top != -1) {
+        push(back, pop(forward));
+        printf("Going forward to: %s\n", back->urls[back->top]);
+    } else {
+        printf("No forward history!\n");
+    }
+}
+
+int main() {
+    Stack backStack, forwardStack;
+    init(&backStack);
+    init(&forwardStack);
+
+    visitURL(&backStack, &forwardStack, "www.example.com");
+    visitURL(&backStack, &forwardStack, "www.example2.com");
+    back(&backStack, &forwardStack);
+    forward(&backStack, &forwardStack);
+
+    return 0;
+}
+</pre>
+            </div>
+
+            <!-- Tree Operations -->
+            <div class="p-6 bg-purple-100 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold">Tree: Binary Search Tree Operations</h3>
+                <p class="mt-2 text-gray-600">Implement BST operations such as insertion and traversal.</p>
+                <button onclick="toggleCode('project3-code')" 
+                    class="mt-4 bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-800">
+                    Show Code
+                </button>
+                <pre id="project3-code" class="hidden mt-4 bg-gray-900 text-white p-4 rounded">// #include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *left, *right;
+};
+
+struct Node *createNode(int data) {
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+struct Node *insert(struct Node *node, int data) {
+    if (node == NULL) return createNode(data);
+    if (data < node->data)
+        node->left = insert(node->left, data);
+    else if (data > node->data)
+        node->right = insert(node->right, data);
+    return node;
+}
+
+void inorder(struct Node *root) {
+    if (root != NULL) {
+        inorder(root->left);
+        printf("%d ", root->data);
+        inorder(root->right);
+    }
+}
+
+int main() {
+    struct Node *root = NULL;
+    root = insert(root, 50);
+    insert(root, 30);
+    insert(root, 20);
+    insert(root, 40);
+    insert(root, 70);
+    insert(root, 60);
+    insert(root, 80);
+
+    printf("Inorder traversal of the BST:\n");
+    inorder(root);
+
+    return 0;
+}
+</pre>
+            </div>
+
+            <!-- Graph Operations -->
+            <div class="p-6 bg-purple-100 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold">Graph: Social Network Connections</h3>
+                <p class="mt-2 text-gray-600">Represent a social network graph using adjacency lists.</p>
+                <button onclick="toggleCode('project4-code')" 
+                    class="mt-4 bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-800">
+                    Show Code
+                </button>
+                <pre id="project4-code" class="hidden mt-4 bg-gray-900 text-white p-4 rounded">// #include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int dest;
+    struct Node *next;
+};
+
+struct Graph {
+    int V;
+    struct Node **adjLists;
+};
+
+struct Graph *createGraph(int V) {
+    struct Graph *graph = (struct Graph *)malloc(sizeof(struct Graph));
+    graph->V = V;
+    graph->adjLists = (struct Node **)malloc(V * sizeof(struct Node *));
+    for (int i = 0; i < V; i++)
+        graph->adjLists[i] = NULL;
+    return graph;
+}
+
+struct Node *createNode(int dest) {
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->dest = dest;
+    newNode->next = NULL;
+    return newNode;
+}
+
+void addEdge(struct Graph *graph, int src, int dest) {
+    struct Node *newNode = createNode(dest);
+    newNode->next = graph->adjLists[src];
+    graph->adjLists[src] = newNode;
+
+    newNode = createNode(src);
+    newNode->next = graph->adjLists[dest];
+    graph->adjLists[dest] = newNode;
+}
+
+void printGraph(struct Graph *graph) {
+    for (int v = 0; v < graph->V; ++v) {
+        struct Node *temp = graph->adjLists[v];
+        printf("\nConnections of user %d:\n", v);
+        while (temp) {
+            printf("%d -> ", temp->dest);
+            temp = temp->next;
+        }
+        printf("NULL\n");
+    }
+}
+
+int main() {
+    int V = 5;
+    struct Graph *graph = createGraph(V);
+    addEdge(graph, 0, 1);
+    addEdge(graph, 0, 4);
+    addEdge(graph, 1, 2);
+    addEdge(graph, 1, 3);
+    addEdge(graph, 1, 4);
+    addEdge(graph, 2, 3);
+    addEdge(graph, 3, 4);
+
+    printGraph(graph);
+
+    return 0;
+}
+</pre>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white text-center py-4">
+        <p>© 2024 My DSA Portfolio</p>
+    </footer>
+
+    <script>
+        function toggleCode(id) {
+            const codeBlock = document.getElementById(id);
+            codeBlock.classList.toggle('hidden');
+        }
+    </script>
+
+</body>
+</html>
+

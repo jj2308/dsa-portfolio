@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <title>Skills</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Animation for Progress Bars */
+        .progress-bar div {
+            animation: fillBar 2s ease-in-out forwards;
+        }
+
+        @keyframes fillBar {
+            from { width: 0; }
+            to { width: var(--skill-width); }
+        }
+
+        /* Tooltip Styling */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #6a1b9a;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Place above the tooltip element */
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-[#f3e8ff] font-sans text-gray-800">
+
+    <section class="max-w-3xl mx-auto my-20 px-6">
+        <h2 class="text-4xl font-bold text-purple-700 text-center mb-10">Skills</h2>
+        <p class="text-lg text-gray-600 mb-8 text-center">
+            Here are some of the key skills I’ve developed. Hover over the skill names to learn more!
+        </p>
+
+        <div class="space-y-8">
+            <!-- Arrays and Strings -->
+            <div>
+                <span class="tooltip font-semibold text-gray-600">
+                    Arrays and Strings
+                    <span class="tooltiptext">Mastering operations like searching, sorting, and manipulation.</span>
+                </span>
+                <div class="progress-bar bg-gray-200 rounded-full h-6 mt-2">
+                    <div class="bg-purple-700 h-6 rounded-full" style="--skill-width: 95%;"></div>
+                </div>
+            </div>
+
+            <!-- Structures and Linked Lists -->
+            <div>
+                <span class="tooltip font-semibold text-gray-600">
+                    Structures and Linked Lists
+                    <span class="tooltiptext">Efficient data storage and traversal techniques.</span>
+                </span>
+                <div class="progress-bar bg-gray-200 rounded-full h-6 mt-2">
+                    <div class="bg-purple-700 h-6 rounded-full" style="--skill-width: 90%;"></div>
+                </div>
+            </div>
+
+            <!-- Stack and Queue -->
+            <div>
+                <span class="tooltip font-semibold text-gray-600">
+                    Stack and Queue
+                    <span class="tooltiptext">Mastering LIFO and FIFO techniques for problem-solving.</span>
+                </span>
+                <div class="progress-bar bg-gray-200 rounded-full h-6 mt-2">
+                    <div class="bg-purple-700 h-6 rounded-full" style="--skill-width: 92%;"></div>
+                </div>
+            </div>
+
+            <!-- Tree and Graph -->
+            <div>
+                <span class="tooltip font-semibold text-gray-600">
+                    Tree and Graph
+                    <span class="tooltiptext">Implementing search algorithms like DFS and BFS.</span>
+                </span>
+                <div class="progress-bar bg-gray-200 rounded-full h-6 mt-2">
+                    <div class="bg-purple-700 h-6 rounded-full" style="--skill-width: 90%;"></div>
+                </div>
+            </div>
+
+            <!-- Dynamic Programming -->
+            <div>
+                <span class="tooltip font-semibold text-gray-600">
+                    Dynamic Programming
+                    <span class="tooltiptext">Breaking problems into sub-problems for optimal solutions.</span>
+                </span>
+                <div class="progress-bar bg-gray-200 rounded-full h-6 mt-2">
+                    <div class="bg-purple-700 h-6 rounded-full" style="--skill-width: 91%;"></div>
+                </div>
+            </div>
+
+            <!-- Sorting Algorithms -->
+            <div>
+                <span class="tooltip font-semibold text-gray-600">
+                    Sorting Algorithms
+                    <span class="tooltiptext">Mastering Quick Sort, Merge Sort, and more.</span>
+                </span>
+                <div class="progress-bar bg-gray-200 rounded-full h-6 mt-2">
+                    <div class="bg-purple-700 h-6 rounded-full" style="--skill-width: 94%;"></div>
+                </div>
+            </div>
+
+            <!-- Graph Algorithms -->
+            <div>
+                <span class="tooltip font-semibold text-gray-600">
+                    Graph Algorithms
+                    <span class="tooltiptext">Implementing Dijkstra, BFS, and DFS for pathfinding.</span>
+                </span>
+                <div class="progress-bar bg-gray-200 rounded-full h-6 mt-2">
+                    <div class="bg-purple-700 h-6 rounded-full" style="--skill-width: 93%;"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white text-center py-4">
+        <p>© 2024 My DSA Portfolio</p>
+    </footer>
+
+</body>
+</html>
